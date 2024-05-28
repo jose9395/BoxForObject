@@ -109,7 +109,7 @@ app.post("/process-images", upload.array("pictures", 2), async (req, res) => {
     }
 
     const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
-    const prompt = "Given the provided front view and top view images of the object, calculate the dimensions of the smallest rectangular (cuboid) box that can contain the object. Ensure the dimensions are accurate and present them in the following format: length × breadth × depth";
+    const prompt = "Given the provided front view and top view images of the object, calculate the dimensions of the smallest rectangular (cuboid) box that can contain the object. Ensure the dimensions are accurate and present them in the following format: length × breadth × depth in cm";
     const result = await model.generateContent([prompt, processedImages[0], processedImages[1]]);
     const response = await result.response;
     const text = await response.text();
